@@ -1,28 +1,24 @@
-/**
- * Filter buttons component for switching between todo views
- * Shows All, Active, and Completed todos
- */
 const FilterButtons = ({ filter, onFilterChange }) => {
   const filters = [
-    { key: 'all', label: 'All', icon: '📝' },
-    { key: 'active', label: 'Active', icon: '⏳' },
-    { key: 'completed', label: 'Completed', icon: '✅' },
+    { key: 'all', label: 'All Tasks', icon: '📋', color: 'from-slate-500 to-slate-600' },
+    { key: 'active', label: 'Active', icon: '⚡', color: 'from-blue-500 to-purple-600' },
+    { key: 'completed', label: 'Done', icon: '✅', color: 'from-green-500 to-emerald-600' },
   ];
 
   return (
-    <div className="flex gap-2 mb-6">
-      {filters.map(({ key, label, icon }) => (
+    <div className="flex gap-3 mb-6 p-1 bg-slate-100/50 rounded-2xl backdrop-blur-sm">
+      {filters.map(({ key, label, icon, color }) => (
         <button
           key={key}
           onClick={() => onFilterChange(key)}
-          className={`px-4 py-2 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 flex items-center gap-2 ${
+          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
             filter === key
-              ? 'bg-primary-500 text-white shadow-lg'
-              : 'bg-white/60 text-gray-600 hover:bg-white/80 hover:text-gray-800'
+              ? `bg-gradient-to-r ${color} text-white shadow-lg`
+              : 'text-slate-600 hover:bg-white/80 hover:text-slate-800'
           }`}
         >
-          <span>{icon}</span>
-          {label}
+          <span className="text-sm">{icon}</span>
+          <span className="text-sm">{label}</span>
         </button>
       ))}
     </div>
